@@ -11,7 +11,7 @@ dotenv_1.default.config();
 exports.pool = new pg_1.Pool({
     connectionString: process.env.DATA_URL
 });
-exports.pool.query("SELECT * FROM products", (err, res) => {
+/*pool.query("SELECT * FROM products",  (err, res) => {
     console.log(err, res);
-    exports.pool.end();
-});
+    pool.end();
+})*/ 

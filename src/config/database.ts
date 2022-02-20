@@ -10,7 +10,7 @@ export const pool = new Pool ( {
 })
 
 
-pool.query("SELECT * FROM products",  (err, res) => {
+/*pool.query("SELECT * FROM products",  (err, res) => {
     console.log(err, res);
     pool.end();
-})
+})*/

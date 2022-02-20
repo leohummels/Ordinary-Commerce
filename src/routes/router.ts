@@ -1,12 +1,13 @@
 import {Router} from 'express';
-import {insertOne} from '../controller/controllers';
+import {insertOne, getProductByID, getAll, putProduct} from '../controller/controllers';
 
 
 //const controller = 
 const router = Router()
 
-router.post('/somepost', insertOne/*(req, res) => {
-    res.send('some get route')
-}*/)
+router.post('/somepost', insertOne)
+router.get('/products/:id', getProductByID)
+router.get('/getAll', getAll)
+router.put('/products/:id', putProduct)
 
 export default router

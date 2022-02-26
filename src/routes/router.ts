@@ -7,9 +7,9 @@ import {getOne_Kart} from '../controller/buy.controllers';
 const router = Router()
 
 //Product Routes
-router.post('/products/', insertOne)
+router.post('/products/post', insertOne)
 router.get('/products/:id', getProductByID)
-router.get('/products/List', getAll)
+router.get('/products/list', getAll)
 router.put('/products/:id', putProduct)
 router.delete('/products/:id', deleteProduct)
 

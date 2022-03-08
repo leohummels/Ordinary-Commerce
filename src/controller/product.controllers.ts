@@ -2,20 +2,41 @@ import {Request, Response} from 'express'
 import {pool} from '../config/database';
 import { Repository } from '../repository';
 import { Service } from '../service/service'
-import { result } from './general.controllers';
+
+
 
 const repo = new Repository
 const repository = new Service(repo)
 
-export const insertOne = async (req:Request, res:Response) => {
+export class Controller {
+
+    async getAll (req:Request, res:Response) { 
+        const response:any = await repo.getList(req.params.list)
+        res.status(200).send(response)
+        
+    }
+
+    async getProductByID (req:Request<{id: string}>, res:Response) { 
+        const response:any = await repository.findById(parseInt(req.params.id))
+        res.status(200).send(response)
+    }
+
+    async insertOne (req:Request, res:Response) {
+        const { name, price, quanti } = req.body
+        const response = await repository.create(name, price, quanti)
+        res.send(response)   
+    }
+}
+
+/*export const insertOne = async (req:Request, res:Response) => {
         const { name, price, quanti } = req.body
         const response = await repository.create(name, price, quanti)
         console.log(response)
         res.send(response)   
     }
 
-export const getAll = async (req:Request<{id: string}>, res:Response) => { 
-       const response = await repository.findAll()
+export const getAll = async (req:Request<{products: string}>, res:Response) => { 
+       const response = await repository.findAll(req.params.products)
        console.log(response)
        res.send(response) 
 }
@@ -24,8 +45,8 @@ export const getAll = async (req:Request<{id: string}>, res:Response) => {
 
 export const getProductByID = async (req:Request<{id: string}>, res:Response) => { 
     const id = parseInt(req.params.id)
-    const response = await repository.findById(id)
-    res.send(response)
+    function response() {return repository.findById(id)}
+    await response()
 }
 
 
@@ -46,4 +67,4 @@ export const deleteProduct = async (req:Request<{id: string}>, res:Response) => 
 
 
 
-//export default Controller
+//export default Controller*/

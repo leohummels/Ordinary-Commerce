@@ -1,27 +1,24 @@
-import {Request, Response} from 'express'
-import { QueryResult } from 'pg';
-import {pool} from '../config/database'
 import { Repository } from '../repository';
 
 export type repo = Repository
 
 export class Service {
-    repository:repo
-    
-   constructor(repository: repo) {
+   constructor(private repository: repo) {
         this.repository = repository
     }
 
     async create(name:string, price:number, quanti:number) {
-        await this.repository.insertOneProduct(name, price, quanti)
+        const response = await this.repository.insertOneProduct(name, price, quanti)
+        return response
     }
 
-    async findAll(){
-        await this.repository.getList()
+    async findAll(list:string){
+        const response = await this.repository.getList(list)
+        return response
     }
 
-    async findById(id:number){
-        await this.repository.getById(id)
+    async findById(id:number) {
+       const response = await this.repository.getById(id)
+       return response
     }
-
 }

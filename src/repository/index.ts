@@ -1,5 +1,5 @@
-import { findSourceMap } from 'module';
 import { QueryResult } from 'pg';
+import { queryResult } from 'pg-promise';
 import {pool} from '../config/database'
 
 
@@ -14,31 +14,20 @@ export class Repository {
         this.productObject = null
     }
 
-    async insertOneProduct(name:string, price:number, quanti:number) {
-         this.productObject = await {name: name, price: price, quanti: quanti}
-         this.productCollection = await pool.query('INSERT INTO products (name, price, quanti) VALUES ($1, $2, $3)'
-        , [name, price, quanti]
-        ,(err:Error, respon: QueryResult) => {
-                    if(err) {
-                        console.log(err.stack)
-                    } else { 
-                        console.log(this.productObject)
-                }
-            }
-        );
-
-        return this.productObject
+     async insertOneProduct(name:string, price:number, quanti:number) {
+         this.productObject = { name: name, price: price, quanti: quanti }
+         await pool.query('INSERT INTO products (name, price, quanti) VALUES ($1, $2, $3)',[name, price, quanti])
+        .then(() => { return this.productObject}).catch(404)
+        return  this.productObject
     }
 
-    async getList() {
-        const {rows} = await pool.query('SELECT * FROM products ORDER BY name ASC')
-        return rows
+    async getList(list:string):Promise<[]> {
+        const response = await pool.query('SELECT * FROM $1:name ORDER BY id',[list])
+        return response
     }
 
     async getById(id:number) {
-        const {rows} = await pool.query('SELECT * FROM products WHERE id = $1', [id])
-        console.log(rows)
-        return rows[0]
-        //return this.productCollection
+        const response = await pool.query('SELECT * FROM products WHERE id = $1', [id])
+        return response
     }
 }

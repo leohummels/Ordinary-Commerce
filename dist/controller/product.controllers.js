@@ -9,62 +9,70 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.putProduct = exports.getProductByID = exports.getAll = exports.insertOne = void 0;
-const database_1 = require("../config/database");
-const insertOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, price, quanti } = req.body;
-    const response = yield database_1.pool.query('INSERT INTO products (name, price, quanti) VALUES ($1, $2, $3)', [name, price, quanti], (err, respon) => {
-        if (err) {
-            console.log(err.stack);
-        }
-        else {
-            res.send(respon.rows[0]);
-        }
-    });
-    return response;
-    //res.json(req.body)
-});
-exports.insertOne = insertOne;
-const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //const id = Number(req.params.id)
-    const response = yield database_1.pool.query('SELECT * FROM products ORDER BY name ASC', (err, respon) => {
-        if (err) {
-            console.log(err.stack);
-        }
-        else {
-            console.log(respon.rows);
-            res.send(respon.rows);
-        }
-    });
-    return response;
-});
-exports.getAll = getAll;
-const getProductByID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = Number(req.params.id);
-    const response = yield database_1.pool.query('SELECT * FROM products WHERE id = $1', [id], (err, respon) => {
-        if (err) {
-            console.log(err.stack);
-        }
-        else {
-            console.log(respon.rows);
-            res.send(respon.rows);
-        }
-    });
-    return response;
-});
-exports.getProductByID = getProductByID;
-const putProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = Number(req.params.id);
-    const { name, price, quanti } = req.body;
-    const response = yield database_1.pool.query('UPDATE products SET name = $1, price = $2,quanti = $3 WHERE id = $4', [name, price, quanti, id]);
-    return res.status(200).send(req.body);
-});
-exports.putProduct = putProduct;
-const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = Number(req.params.id);
-    const { name, price, quanti } = req.body;
-    const response = yield database_1.pool.query('DELETE FROM PRODUCTS WHERE id = $1', [id]);
-    return res.status(200).send('Produto deletado com Sucesso!');
-});
-exports.deleteProduct = deleteProduct;
-//export default Controller
+exports.Controller = void 0;
+const repository_1 = require("../repository");
+const service_1 = require("../service/service");
+const repo = new repository_1.Repository;
+const repository = new service_1.Service(repo);
+class Controller {
+    getAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield repo.getList(req.params.list);
+            res.status(200).send(response);
+        });
+    }
+    getProductByID(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield repository.findById(parseInt(req.params.id));
+            res.status(200).send(response);
+        });
+    }
+    insertOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { name, price, quanti } = req.body;
+            const response = yield repository.create(name, price, quanti);
+            res.send(response);
+        });
+    }
+}
+exports.Controller = Controller;
+/*export const insertOne = async (req:Request, res:Response) => {
+        const { name, price, quanti } = req.body
+        const response = await repository.create(name, price, quanti)
+        console.log(response)
+        res.send(response)
+    }
+
+export const getAll = async (req:Request<{products: string}>, res:Response) => {
+       const response = await repository.findAll(req.params.products)
+       console.log(response)
+       res.send(response)
+}
+    
+
+
+export const getProductByID = async (req:Request<{id: string}>, res:Response) => {
+    const id = parseInt(req.params.id)
+    function response() {return repository.findById(id)}
+    await response()
+}
+
+
+export const putProduct = async (req:Request<{id: string}>, res:Response) => {
+    const id = Number(req.params.id)
+    const {name, price, quanti} = req.body
+    const response = await pool.query('UPDATE products SET name = $1, price = $2,quanti = $3 WHERE id = $4', [name, price, quanti, id])
+        return res.status(200).send(req.body)
+}
+
+export const deleteProduct = async (req:Request<{id: string}>, res:Response) => {
+    const id = Number(req.params.id)
+    const {name, price, quanti} = req.body
+    const response = await pool.query('DELETE FROM PRODUCTS WHERE id = $1', [id])
+        return res.status(200).send('Produto deletado com Sucesso!')
+}
+
+
+
+
+//export default Controller*/ 

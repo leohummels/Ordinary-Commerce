@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {Controller, /*insertOne, getAll, putProduct, deleteProduct*/} from '../controller/product.controllers';
+import {Controller} from '../controller/product.controllers';
 
 
 

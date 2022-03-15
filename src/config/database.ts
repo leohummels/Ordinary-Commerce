@@ -1,16 +1,10 @@
-import {Pool,Client} from 'pg';
 import dotenv from 'dotenv'
-//import dotenv from 'dotenv/config'
+import pgp from 'pg-promise'
+const db = pgp()
 
 dotenv.config()
 
     
-export const pool = new Pool ( {
+export const pool = db( {
    connectionString: process.env.DATA_URL
 })
-
-
-/*pool.query("SELECT * FROM products",  (err, res) => {
-    console.log(err, res);
-    pool.end();
-})*/

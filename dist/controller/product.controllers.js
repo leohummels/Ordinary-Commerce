@@ -17,8 +17,14 @@ const repository = new service_1.Service(repo);
 class Controller {
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield repository.findAll(req.params.list);
-            res.status(200).send(response);
+            try {
+                const response = yield repository.findAll(req.params.list);
+                res.status(200).send(response);
+            }
+            catch (erro) {
+                res.status(400).send('Algo de errado não está certo');
+                this.error;
+            }
         });
     }
     getProductByID(req, res) {
@@ -45,18 +51,14 @@ class Controller {
     deleteProduct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const id = Number(req.params.id);
-            const response = yield repository.DeleteById(id);
+            const response = yield repository.deleteById(id);
             return res.status(200).send('Produto deletado com Sucesso!');
+        });
+    }
+    error() {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error;
         });
     }
 }
 exports.Controller = Controller;
-/*
-export const putProduct = async (req:Request<{id: string}>, res:Response) => {
-    const id = Number(req.params.id)
-    const {name, price, quanti} = req.body
-    const response = await pool.query('UPDATE products SET name = $1, price = $2,quanti = $3 WHERE id = $4', [name, price, quanti, id])
-        return res.status(200).send(req.body)
-}
-export const
-//export default Controller*/

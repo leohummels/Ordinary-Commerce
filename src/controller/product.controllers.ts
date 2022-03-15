@@ -9,10 +9,14 @@ const repository = new Service(repo)
 
 export class Controller {
 
-    async getAll (req:Request, res:Response) { 
+    async getAll (req:Request<{list:string}>, res:Response) { 
+        try {
         const response:any = await repository.findAll(req.params.list)
         res.status(200).send(response)
-        
+        } catch(erro:any) {
+            res.status(400).send('Algo de errado não está certo')
+            this.error
+        }
     }
 
     async getProductByID (req:Request<{id: string}>, res:Response) { 
@@ -35,17 +39,12 @@ export class Controller {
 
     async deleteProduct(req:Request<{id: string}>, res:Response){
         const id = Number(req.params.id)
-        const response = await repository.DeleteById(id)
+        const response = await repository.deleteById(id)
         return res.status(200).send('Produto deletado com Sucesso!')
+    }
+
+    async error() {
+        throw new Error
     }
 }
 
-/*
-export const putProduct = async (req:Request<{id: string}>, res:Response) => { 
-    const id = Number(req.params.id)
-    const {name, price, quanti} = req.body
-    const response = await pool.query('UPDATE products SET name = $1, price = $2,quanti = $3 WHERE id = $4', [name, price, quanti, id])
-        return res.status(200).send(req.body)        
-}
-export const 
-//export default Controller*/

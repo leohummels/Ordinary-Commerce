@@ -27,8 +27,10 @@ export class Service {
         return response
     }
 
-    async DeleteById(id:number){
+    async deleteById(id:number){
         const response = await this.repository.Delete(id)
         return response
     }
+
+    
 }

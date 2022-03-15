@@ -39,7 +39,7 @@ class Service {
             return response;
         });
     }
-    DeleteById(id) {
+    deleteById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.repository.Delete(id);
             return response;

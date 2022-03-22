@@ -29,30 +29,54 @@ class Controller {
     }
     getProductByID(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield repository.findById(parseInt(req.params.id));
-            res.status(200).send(response);
+            try {
+                const response = yield repository.findById(parseInt(req.params.id));
+                res.status(200).send(response);
+            }
+            catch (erro) {
+                res.status(400).send('Algo de errado não está certo');
+                this.error;
+            }
         });
     }
     insertOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { name, price, quanti } = req.body;
-            const response = yield repository.create(name, price, quanti);
-            res.send(response);
+            try {
+                const { name, price, quanti } = req.body;
+                const response = yield repository.create(name, price, quanti);
+                res.send(response);
+            }
+            catch (erro) {
+                res.status(400).send('Algo de errado não está certo');
+                this.error;
+            }
         });
     }
     putProduct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const id = Number(req.params.id);
-            const { name, price, quanti } = req.body;
-            const response = yield repository.putById(name, price, quanti, id);
-            return res.status(200).send(req.body);
+            try {
+                const id = Number(req.params.id);
+                const { name, price, quanti } = req.body;
+                const response = yield repository.putById(name, price, quanti, id);
+                return res.status(200).send(req.body);
+            }
+            catch (erro) {
+                res.status(400).send('Algo de errado não está certo');
+                this.error;
+            }
         });
     }
     deleteProduct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const id = Number(req.params.id);
-            const response = yield repository.deleteById(id);
-            return res.status(200).send('Produto deletado com Sucesso!');
+            try {
+                const id = Number(req.params.id);
+                const response = yield repository.deleteById(id);
+                return res.status(200).send('Produto deletado com Sucesso!');
+            }
+            catch (erro) {
+                res.status(400).send('Algo de errado não está certo');
+                this.error;
+            }
         });
     }
     error() {

@@ -1,13 +1,9 @@
-import { QueryResult } from 'pg';
-import { queryResult } from 'pg-promise';
 import {pool} from '../config/database'
 
 
 export class Repository {
     productCollection: any;
     productObject: any
-  
-    
 
     constructor () {
         this.productCollection = null

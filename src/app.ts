@@ -1,7 +1,7 @@
 import express, { Router, urlencoded } from 'express';
 import routes from './routes/router';
 
-const app = express()
+export const app = express()
 const router:any = routes
 
 app.get('/', (req, res) => {
@@ -17,4 +17,4 @@ app.listen(3000, () => {
     console.log('Running...')
 })
 
-module.exports = app
+//module.exports = app

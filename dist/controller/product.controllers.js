@@ -21,9 +21,9 @@ class Controller {
                 const response = yield repository.findAll(req.params.list);
                 res.status(200).send(response);
             }
-            catch (erro) {
+            catch (_a) {
                 res.status(400).send('Algo de errado não está certo');
-                this.error;
+                throw new Error("Check your URL");
             }
         });
     }
@@ -33,9 +33,9 @@ class Controller {
                 const response = yield repository.findById(parseInt(req.params.id));
                 res.status(200).send(response);
             }
-            catch (erro) {
-                res.status(400).send('Algo de errado não está certo');
-                this.error;
+            catch (_a) {
+                res.status(400).send('Algo de errado não está certo certo');
+                throw new Error("Check your URL params");
             }
         });
     }
@@ -48,21 +48,19 @@ class Controller {
             }
             catch (erro) {
                 res.status(400).send('Algo de errado não está certo');
-                this.error;
             }
         });
     }
     putProduct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const id = Number(req.params.id);
+            const { name, price, quanti } = req.body;
             try {
-                const id = Number(req.params.id);
-                const { name, price, quanti } = req.body;
                 const response = yield repository.putById(name, price, quanti, id);
                 return res.status(200).send(req.body);
             }
             catch (erro) {
                 res.status(400).send('Algo de errado não está certo');
-                this.error;
             }
         });
     }
@@ -75,13 +73,7 @@ class Controller {
             }
             catch (erro) {
                 res.status(400).send('Algo de errado não está certo');
-                this.error;
             }
-        });
-    }
-    error() {
-        return __awaiter(this, void 0, void 0, function* () {
-            throw new Error;
         });
     }
 }

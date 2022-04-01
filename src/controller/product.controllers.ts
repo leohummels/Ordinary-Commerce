@@ -13,20 +13,20 @@ export class Controller {
         try {
         const response:any = await repository.findAll(req.params.list)
         res.status(200).send(response)
-        } catch(erro:any) {
+        } catch {
             res.status(400).send('Algo de errado não está certo')
-            this.error
+            throw new Error("Check your URL")
         }
     }
 
     async getProductByID (req:Request<{id: string}>, res:Response) { 
-        try {
-        const response:any = await repository.findById(parseInt(req.params.id))
-        res.status(200).send(response)
-        } catch(erro:any) {
-            res.status(400).send('Algo de errado não está certo')
-            this.error
-        }
+            try {   
+                const response:any = await repository.findById(parseInt(req.params.id))
+                res.status(200).send(response)
+            } catch {
+                res.status(400).send('Algo de errado não está certo certo')
+                throw new Error("Check your URL params")
+            }
     }
 
     async insertOne (req:Request, res:Response) {
@@ -36,19 +36,17 @@ export class Controller {
         res.send(response) 
         } catch(erro:any) {
             res.status(400).send('Algo de errado não está certo')
-            this.error
         }  
     }
 
     async putProduct(req:Request<{id: string}>, res:Response){ 
-        try {
         const id = Number(req.params.id)
         const {name, price, quanti} = req.body
+        try {
         const response = await repository.putById(name, price, quanti, id)
         return res.status(200).send(req.body)
         } catch(erro:any) {
             res.status(400).send('Algo de errado não está certo')
-            this.error
         }        
     }
 
@@ -58,13 +56,9 @@ export class Controller {
         const response = await repository.deleteById(id)
         return res.status(200).send('Produto deletado com Sucesso!')
         } catch(erro:any) {
-            res.status(400).send('Algo de errado não está certo')
-            this.error
+             res.status(400).send('Algo de errado não está certo')
         }
     }
 
-    async error() {
-        throw new Error
-    }
 }
 

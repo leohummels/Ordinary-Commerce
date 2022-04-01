@@ -1,14 +1,20 @@
-//import {test} from './jest.config'
 import request from 'supertest'
-import {app} from '../app'
-import { Controller } from '../controller/product.controllers'
+import {app, server} from '../app'
 
-const controller = new Controller
+afterAll( async () => {
+    server.close()
+})
 
-describe('##GET REQUEST TEST##', () => {
-    test('should return error messagen when product does not exist', async () => {
-      controller.getProductByID
-    })
+ describe('##GET ALL REQUEST TEST##', () => {
+ it('should return a json list message when list exist',  async () => {
+     const resp = await request(app).get('/list/products').expect(200)
+     expect(resp.statusCode).toEqual(200)
+  })  
+})
 
-    request(app).get('/products/59').expect(400)
+describe('##GET BY ID REQUEST TEST##', () => {
+   it('should return json message when product exist',  async () => {
+    const resp = await request(app).get('/products/55').expect(200)
+    expect(resp.statusCode).toEqual(200)
+  })  
 })

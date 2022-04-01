@@ -27,12 +27,14 @@ class Repository {
     getList(list) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield database_1.pool.query('SELECT * FROM $1:name ORDER BY id', [list]);
+            database_1.pool.$pool.end();
             return response;
         });
     }
     getById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield database_1.pool.query('SELECT * FROM products WHERE $1=id', [id]);
+            database_1.pool.$pool.end();
             return response;
         });
     }

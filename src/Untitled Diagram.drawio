@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-01T02:15:14.266Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36" etag="tDwrI8EoQHZUcNTHh3vN" version="17.3.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-01T02:16:39.530Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36" etag="EnyTp_-1TeYsngpKEqXf" version="17.3.0" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2403" dy="708" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" background="none" math="0" shadow="1">
+    <mxGraphModel dx="3807" dy="1533" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" background="none" math="0" shadow="1">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -27,13 +27,13 @@
         <mxCell id="DXi5md-KKveG2AxMWAel-261" value="Área do comprador" style="rounded=1;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-36" y="294" width="117" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="DXi5md-KKveG2AxMWAel-263" value="Sim" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="DXi5md-KKveG2AxMWAel-262" target="DXi5md-KKveG2AxMWAel-261" edge="1">
+        <mxCell id="DXi5md-KKveG2AxMWAel-263" value="COMPRADOR" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="DXi5md-KKveG2AxMWAel-262" target="DXi5md-KKveG2AxMWAel-261" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="DXi5md-KKveG2AxMWAel-265" value="Não" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="DXi5md-KKveG2AxMWAel-262" target="DXi5md-KKveG2AxMWAel-264" edge="1">
+        <mxCell id="DXi5md-KKveG2AxMWAel-265" value="VENDEDOR" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="DXi5md-KKveG2AxMWAel-262" target="DXi5md-KKveG2AxMWAel-264" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="DXi5md-KKveG2AxMWAel-262" value="É um comprador?" style="rhombus;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="DXi5md-KKveG2AxMWAel-262" value="Tipo de usuário?" style="rhombus;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="493.97" y="279" width="146" height="90" as="geometry" />
         </mxCell>
         <mxCell id="DXi5md-KKveG2AxMWAel-268" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="DXi5md-KKveG2AxMWAel-264" target="DXi5md-KKveG2AxMWAel-275" edge="1">
@@ -173,7 +173,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="U8QUfv2BTT90B2AzWARd-16" value="NÃO" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="U8QUfv2BTT90B2AzWARd-14">
+        <mxCell id="U8QUfv2BTT90B2AzWARd-16" value="Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="U8QUfv2BTT90B2AzWARd-14">
           <mxGeometry x="-0.2368" y="1" relative="1" as="geometry">
             <mxPoint x="37" y="31" as="offset" />
           </mxGeometry>

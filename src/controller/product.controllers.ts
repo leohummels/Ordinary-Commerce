@@ -3,7 +3,6 @@ import { Repository } from '../repository';
 import { Service } from '../service/service'
 
 
-
 const repo = new Repository
 const repository = new Service(repo)
 
@@ -31,8 +30,8 @@ export class Controller {
 
     async insertOne (req:Request, res:Response) {
         try {
-        const { name, price, quanti } = req.body
-        const response = await repository.create(name, price, quanti)
+            const { name, price, quanti } = req.body
+            const response = await repository.create(name, price, quanti)
         res.send(response) 
         } catch(erro:any) {
             res.status(400).send('Algo de errado não está certo')

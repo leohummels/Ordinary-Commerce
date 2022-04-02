@@ -9,44 +9,43 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Repository = void 0;
-const database_1 = require("../config/database");
-class Repository {
-    constructor() {
-        this.productCollection = null;
-        this.productObject = null;
+exports.CustumerService = void 0;
+const buy_operation_1 = require("./buy.operation");
+class CustumerService {
+    constructor(repository) {
+        this.repository = repository;
+        this.repository = repository;
     }
-    insertOneProduct(name, price, quanti) {
+    create(name, price, quanti) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.productObject = { name: name, price: price, quanti: quanti };
-            yield database_1.pool.query('INSERT INTO products (name, price, quanti) VALUES ($1, $2, $3)', [name, price, quanti])
-                .then(() => { return this.productObject; });
-            return this.productObject;
-        });
-    }
-    getList(list) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield database_1.pool.query('SELECT * FROM $1:name ORDER BY id', [list]);
+            const response = yield this.repository.insertOneProduct(name, price, quanti);
             return response;
         });
     }
-    getById(id) {
+    findAll(list) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield database_1.pool.query('SELECT * FROM products WHERE $1=id', [id]);
+            const response = yield this.repository.getList(list);
             return response;
         });
     }
-    updateById(name, price, quanti, id) {
+    findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield database_1.pool.query('UPDATE products SET name = $1, price = $2,quanti = $3 WHERE id = $4', [name, price, quanti, id]);
+            const response = yield this.repository.getById(id);
             return response;
         });
     }
-    Delete(id) {
+    buying(name, price, item_quanti, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield database_1.pool.query('DELETE FROM PRODUCTS WHERE id = $1', [id]);
+            let put_quanti = yield (0, buy_operation_1.buyOperation)(id, item_quanti);
+            const response = yield this.repository.updateById(name, price, put_quanti, id);
+            return response;
+        });
+    }
+    deleteById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.repository.Delete(id);
             return response;
         });
     }
 }
-exports.Repository = Repository;
+exports.CustumerService = CustumerService;

@@ -11,22 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustumerController = void 0;
 const repository_1 = require("../repository");
+const custumer_service_1 = require("../service/custumer.service");
 const service_1 = require("../service/service");
 const repo = new repository_1.Repository;
 const repository = new service_1.Service(repo);
+const custRepository = new custumer_service_1.CustumerService(repo);
 class CustumerController {
-    getAll(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield repository.findAll(req.params.list);
-                res.status(200).send(response);
-            }
-            catch (_a) {
-                res.status(400).send('Algo de errado não está certo');
-                throw new Error("Check your URL");
-            }
-        });
-    }
     getProductByID(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -36,6 +26,19 @@ class CustumerController {
             catch (_a) {
                 res.status(400).send('Algo de errado não está certo certo');
                 throw new Error("Check your URL params");
+            }
+        });
+    }
+    buyProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = Number(req.params.id);
+            const { name, price, item_quanti } = yield req.body;
+            try {
+                const response = yield custRepository.buying(name, price, item_quanti, id);
+                return res.status(200).send(req.body);
+            }
+            catch (erro) {
+                res.status(400).send('Algo de errado ao fazer o seu pedido');
             }
         });
     }

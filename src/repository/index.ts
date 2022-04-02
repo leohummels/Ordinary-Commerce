@@ -19,13 +19,11 @@ export class Repository {
 
     async getList(list:string) {
         const response = await pool.query('SELECT * FROM $1:name ORDER BY id',[list])
-        pool.$pool.end()
         return response
     }
 
     async getById(id:number) {
         const response = await pool.query('SELECT * FROM products WHERE $1=id', [id])
-        pool.$pool.end()
         return response
     }
 

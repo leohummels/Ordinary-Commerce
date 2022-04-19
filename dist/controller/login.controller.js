@@ -9,13 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buyOperation = void 0;
-const custumer_service_1 = require("./custumer.service");
-function buyOperation(id, item_quanti) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const item = yield custumer_service_1.CustumerService.findById(id);
-        let operation = (yield item[0].quanti) - item_quanti;
-        return operation;
-    });
+exports.UserLogin = void 0;
+class UserLogin {
+    static login(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = "inserir classe login.Service";
+            }
+            catch (_a) {
+            }
+        });
+    }
 }
-exports.buyOperation = buyOperation;
+exports.UserLogin = UserLogin;

@@ -9,13 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buyOperation = void 0;
-const custumer_service_1 = require("./custumer.service");
-function buyOperation(id, item_quanti) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const item = yield custumer_service_1.CustumerService.findById(id);
-        let operation = (yield item[0].quanti) - item_quanti;
-        return operation;
-    });
+exports.LoginService = void 0;
+const validateEmail_operation_1 = require("./validateEmail.operation");
+class LoginService {
+    static userEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const emailValid = validateEmail_operation_1.validateEmail.validate(email);
+        });
+    }
 }
-exports.buyOperation = buyOperation;
+exports.LoginService = LoginService;

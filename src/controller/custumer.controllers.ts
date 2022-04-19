@@ -1,17 +1,14 @@
 import {Request, Response} from 'express'
-import { Repository } from '../repository';
-import { CustumerService } from '../service/custumer.service';
-import { Service } from '../service/service'
+import {CustumerService}  from '../service/custumer.service';
 
-const repo = new Repository
-const repository = new Service(repo)
-const custRepository = new CustumerService(repo)
+
+const custRepository = CustumerService
 
 export class CustumerController {
 
      async getProductByID (req:Request<{id: string}>, res:Response) { 
         try {   
-            const response:any = await repository.findById(parseInt(req.params.id))
+            const response:any = await custRepository.findById(parseInt(req.params.id))
             res.status(200).send(response)
         } catch {
             res.status(400).send('Algo de errado não está certo certo')

@@ -10,38 +10,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustumerService = void 0;
+const repository_1 = require("../repository");
 const buy_operation_1 = require("./buy.operation");
 class CustumerService {
     constructor(repository) {
         this.repository = repository;
         this.repository = repository;
     }
-    create(name, price, quanti) {
+    static create(name, price, quanti) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.repository.insertOneProduct(name, price, quanti);
             return response;
         });
     }
-    findAll(list) {
+    static findAll(list) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.repository.getList(list);
             return response;
         });
     }
-    findById(id) {
+    static findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.repository.getById(id);
             return response;
         });
     }
-    buying(name, price, item_quanti, id) {
+    static buying(name, price, item_quanti, id) {
         return __awaiter(this, void 0, void 0, function* () {
             let put_quanti = yield (0, buy_operation_1.buyOperation)(id, item_quanti);
             const response = yield this.repository.updateById(name, price, put_quanti, id);
             return response;
         });
     }
-    deleteById(id) {
+    static deleteById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.repository.Delete(id);
             return response;
@@ -49,3 +50,4 @@ class CustumerService {
     }
 }
 exports.CustumerService = CustumerService;
+CustumerService.repository = new repository_1.Repository;

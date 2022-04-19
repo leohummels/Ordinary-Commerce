@@ -10,17 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustumerController = void 0;
-const repository_1 = require("../repository");
 const custumer_service_1 = require("../service/custumer.service");
-const service_1 = require("../service/service");
-const repo = new repository_1.Repository;
-const repository = new service_1.Service(repo);
-const custRepository = new custumer_service_1.CustumerService(repo);
+const custRepository = custumer_service_1.CustumerService;
 class CustumerController {
     getProductByID(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield repository.findById(parseInt(req.params.id));
+                const response = yield custRepository.findById(parseInt(req.params.id));
                 res.status(200).send(response);
             }
             catch (_a) {

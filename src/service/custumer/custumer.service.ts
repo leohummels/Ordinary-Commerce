@@ -1,5 +1,5 @@
-import { Repository } from '../repository'
-import {buyOperation} from './buy.operation'
+import { Repository } from '../../repository'
+import {buyOperation} from './buy/buy.operation'
 
 type repo = Repository
 

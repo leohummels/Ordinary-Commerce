@@ -8,21 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserLogin = void 0;
-const login_service_1 = require("../service/login/login.service");
-class UserLogin {
-    static login(req, res) {
+exports.LoginService = void 0;
+const validateLogin_operation_1 = require("./email/validateLogin.operation");
+const auth_1 = __importDefault(require("../auth"));
+class LoginService {
+    static userLogin(email, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            const loginParams = req.body;
-            try {
-                const validate = yield login_service_1.LoginService.userLogin(loginParams.email, loginParams.password);
-                return res.status(200).json(validate);
+            const emailValid = yield validateLogin_operation_1.validateLogin.getLogin(email);
+            const passwordValid = yield validateLogin_operation_1.validateLogin.getPassword(password);
+            if (emailValid === true && passwordValid === true) {
+                const keyNum = (0, auth_1.default)();
+                return keyNum;
             }
-            catch (_a) {
-                return res.status(500).json("error server");
+            else {
+                return "Número não gerado";
             }
         });
     }
 }
-exports.UserLogin = UserLogin;
+exports.LoginService = LoginService;

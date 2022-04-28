@@ -1,4 +1,4 @@
-import { CustumerService } from './custumer.service'
+import { CustumerService } from '../custumer.service'
 
 
 export  async function buyOperation(id: number, item_quanti:number,): Promise<number> {

@@ -9,20 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserLogin = void 0;
-const login_service_1 = require("../service/login/login.service");
-class UserLogin {
-    static login(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const loginParams = req.body;
-            try {
-                const validate = yield login_service_1.LoginService.userLogin(loginParams.email, loginParams.password);
-                return res.status(200).json(validate);
-            }
-            catch (_a) {
-                return res.status(500).json("error server");
-            }
-        });
-    }
+exports.buyOperation = void 0;
+const custumer_service_1 = require("../custumer.service");
+function buyOperation(id, item_quanti) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const item = yield custumer_service_1.CustumerService.findById(id);
+        let operation = (yield item[0].quanti) - item_quanti;
+        return operation;
+    });
 }
-exports.UserLogin = UserLogin;
+exports.buyOperation = buyOperation;

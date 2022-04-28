@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustumerController = void 0;
-const custumer_service_1 = require("../service/custumer.service");
+const custumer_service_1 = require("../service/custumer/custumer.service");
 const custRepository = custumer_service_1.CustumerService;
 class CustumerController {
     getProductByID(req, res) {

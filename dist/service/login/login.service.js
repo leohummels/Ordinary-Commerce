@@ -21,7 +21,7 @@ class LoginService {
             const emailValid = yield validateLogin_operation_1.validateLogin.getLogin(email);
             const passwordValid = yield validateLogin_operation_1.validateLogin.getPassword(password);
             if (emailValid === true && passwordValid === true) {
-                const keyNum = (0, auth_1.default)();
+                const keyNum = yield (0, auth_1.default)();
                 return keyNum;
             }
             else {

@@ -17,11 +17,17 @@ class UserLogin {
             const loginParams = req.body;
             try {
                 const validate = yield login_service_1.LoginService.userLogin(loginParams.email, loginParams.password);
-                return res.status(200).json(validate);
+                const str = "http://localhost:3000/home/:validate" + encodeURIComponent(validate);
+                res.status(200).redirect(str);
             }
             catch (_a) {
                 return res.status(500).json("error server");
             }
+        });
+    }
+    static home(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            res.send("home page");
         });
     }
 }

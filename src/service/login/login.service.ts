@@ -7,7 +7,7 @@ export class LoginService {
         const passwordValid = await validateLogin.getPassword(password)
         
         if(emailValid === true && passwordValid  === true) {
-            const keyNum = key()
+            const keyNum =await key()
             return keyNum
         } else {
             return "Número não gerado"

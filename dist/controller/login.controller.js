@@ -17,8 +17,13 @@ class UserLogin {
             const loginParams = req.body;
             try {
                 const validate = yield login_service_1.LoginService.userLogin(loginParams.email, loginParams.password);
-                const str = "http://localhost:3000/home/:validate" + encodeURIComponent(validate);
-                res.status(200).redirect(str);
+                const str = "http://localhost:3000/home/" + encodeURIComponent(validate);
+                if (validate !== false) {
+                    res.status(200).redirect(str);
+                }
+                else {
+                    res.status(200).send("Erro de validação");
+                }
             }
             catch (_a) {
                 return res.status(500).json("error server");

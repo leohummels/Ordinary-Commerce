@@ -11,21 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateLogin = void 0;
 class validateLogin {
-    //static repository: repo = new Repository
-    /*static regexp:RegExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)?(\.[a-z]{2,3})$/gi
-
-    static async validate(email: string) {
-            if(email.match(validateEmail.regexp)) {
-                return true
-            }  else {
-                let result = "Por favor, insira uma e-mail válido."
-                return result
-            }
-    }*/
     static getLogin(email) {
         return __awaiter(this, void 0, void 0, function* () {
-            const repoEmail = validateLogin.repo.email;
-            if (email = repoEmail) {
+            const consult = yield validateLogin
+                .repo
+                .find(element => { return element.email === email; });
+            if (consult.email === email) {
                 return true;
             }
             else {
@@ -35,8 +26,10 @@ class validateLogin {
     }
     static getPassword(password) {
         return __awaiter(this, void 0, void 0, function* () {
-            const repoPassword = validateLogin.repo.password;
-            if (password = repoPassword) {
+            const consult = yield validateLogin
+                .repo
+                .find(element => { return element.password === password; });
+            if (consult.password === password) {
                 return true;
             }
             else {
@@ -44,9 +37,45 @@ class validateLogin {
             }
         });
     }
+    static insertHash(key, email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const consult = yield validateLogin
+                .repo
+                .find(element => {
+                if (element.email === email) {
+                    element.hash = key;
+                    return element.hash;
+                }
+            });
+            return consult;
+        });
+    }
+    ;
+    static whatUser(info) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const consult = yield validateLogin
+                .repo
+                .find(element => {
+                if (element.hash === info) {
+                    return element.costumer;
+                }
+            });
+            return consult.costumer;
+        });
+    }
 }
 exports.validateLogin = validateLogin;
-validateLogin.repo = {
-    "email": "fakemail@fakemail.com",
-    "password": "123456789"
-};
+validateLogin.repo = [
+    {
+        "email": "fakemail@fakemail.com",
+        "password": "123456789",
+        "costumer": true,
+        "hash": "",
+    },
+    {
+        "email": "other_fakemail@fakemail.com",
+        "password": "987654321",
+        "costumer": false,
+        "hash": ""
+    }
+];

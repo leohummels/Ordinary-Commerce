@@ -1,18 +1,25 @@
-import {Request, Response, NextFunction} from 'express'
-import { send } from 'process'
+import {Request, Response} from 'express'
 import { LoginService } from '../service/login/login.service'
 
 export class UserLogin {
-    static email: string
-    static password: string
 
     static async login(req:Request<{email: string, password: string}>, res:Response){
         const loginParams = req.body
         try {
-         const validate = await LoginService.userLogin(loginParams.email, loginParams.password)
-         const str = "http://localhost:3000/home/:validate" + encodeURIComponent(validate)
-         res.status(200).redirect(str)
-       
+                const validate = await LoginService.userLogin(loginParams.email, loginParams.password)
+                const str = "http://localhost:3000/home/" + encodeURIComponent(validate)
+                
+
+                if (validate !== false )
+                {
+                    res.status(200).redirect(str)
+                }
+                else 
+                {   
+                    res.status(200).send("Erro de validação")
+                }
+                
+            
         } catch {
             return res.status(500).json("error server")
         }

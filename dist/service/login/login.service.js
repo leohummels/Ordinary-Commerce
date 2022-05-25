@@ -22,10 +22,11 @@ class LoginService {
             const passwordValid = yield validateLogin_operation_1.validateLogin.getPassword(password);
             if (emailValid === true && passwordValid === true) {
                 const keyNum = yield (0, auth_1.default)();
+                yield validateLogin_operation_1.validateLogin.insertHash(keyNum, email);
                 return keyNum;
             }
             else {
-                return "Número não gerado";
+                return false;
             }
         });
     }

@@ -25,7 +25,19 @@ export class UserLogin {
         }
     }
 
-     static async home(req:Request, res:Response){
-       res.send("home page")
+     static async home(req:Request, res:Response)
+     {
+        const parametro = await req.params.validate
+        const str = await LoginService.userType(parametro);
+        const endereco = "http://localhost:3000/home/" + encodeURIComponent(parametro) + "/" + encodeURIComponent(str)
+        console.log(parametro)
+        res.status(200).redirect(endereco);
      }
+
+     static async userType(req:Request, res:Response) {
+        res.status(200).send("Hello!")
+    }
+
+
+
 }

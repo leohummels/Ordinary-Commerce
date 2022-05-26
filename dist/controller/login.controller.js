@@ -32,7 +32,16 @@ class UserLogin {
     }
     static home(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.send("home page");
+            const parametro = yield req.params.validate;
+            const str = yield login_service_1.LoginService.userType(parametro);
+            const endereco = "http://localhost:3000/home/" + encodeURIComponent(parametro) + "/" + encodeURIComponent(str);
+            console.log(parametro);
+            res.status(200).redirect(endereco);
+        });
+    }
+    static userType(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            res.status(200).send("Hello!");
         });
     }
 }

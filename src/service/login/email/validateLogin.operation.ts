@@ -33,7 +33,7 @@ export class validateLogin {
         }
     }
 
-    static async getPassword(password:string){
+    static async getPassword(password:string): Promise<boolean>{
         const consult:any = await validateLogin
                                 .repo
                                 .find(element => { return element.password === password})
@@ -60,17 +60,21 @@ export class validateLogin {
                                 });
     
         return consult;
-        };
+    };
 
-    static async whatUser(info: string):Promise<string> {
-        const consult:any = await validateLogin
-                                .repo
-                                .find(element => { 
-                                    if(element.hash === info){
-                                        return element.costumer
-                                    } 
-                                });
-        return consult.costumer;
-
+    static async whatUser(info: string): Promise<boolean> {
+        try {
+            const consult:any = await validateLogin
+                                        .repo
+                                        .find(element => { 
+                                            if(element.hash === info)
+                                            {   
+                                                return element
+                                            } 
+                                        });
+            return consult.costumer
+        } catch {
+            return false
+        }
     }
 }

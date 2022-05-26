@@ -5,4 +5,5 @@ const login_controller_1 = require("../controller/login.controller");
 const router = (0, express_1.Router)();
 router.post('/login', login_controller_1.UserLogin.login);
 router.get('/home/:validate', login_controller_1.UserLogin.home);
+router.get('/home/:validate/:type', login_controller_1.UserLogin.userType);
 exports.default = router;

@@ -53,14 +53,19 @@ class validateLogin {
     ;
     static whatUser(info) {
         return __awaiter(this, void 0, void 0, function* () {
-            const consult = yield validateLogin
-                .repo
-                .find(element => {
-                if (element.hash === info) {
-                    return element.costumer;
-                }
-            });
-            return consult.costumer;
+            try {
+                const consult = yield validateLogin
+                    .repo
+                    .find(element => {
+                    if (element.hash === info) {
+                        return element;
+                    }
+                });
+                return consult.costumer;
+            }
+            catch (_a) {
+                return false;
+            }
         });
     }
 }

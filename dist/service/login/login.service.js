@@ -30,5 +30,16 @@ class LoginService {
             }
         });
     }
+    static userType(info) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usertype = yield validateLogin_operation_1.validateLogin.whatUser(info);
+            if (usertype == true) {
+                return "BoasVendas";
+            }
+            else {
+                return "BoasCompras";
+            }
+        });
+    }
 }
 exports.LoginService = LoginService;

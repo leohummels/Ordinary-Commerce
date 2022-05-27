@@ -1,5 +1,5 @@
 import { Repository } from '../../repository'
-import {buyOperation} from './buy/buy.operation'
+import {Buy} from './buy/buy.operation'
 
 type repo = Repository
 
@@ -26,7 +26,7 @@ export class CustumerService {
     }
 
     static async buying(name:string, price:number, item_quanti:number, id:number){
-        let put_quanti = await buyOperation(id, item_quanti)
+        const put_quanti = await Buy._buyOperation(id, item_quanti)
         const response = await this.repository.updateById(name, price, put_quanti, id)
         return response
     }

@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import {CustumerService}  from '../service/custumer/custumer.service';
+import {CustumerService}  from '../../service/custumer/custumer.service';
 
 
 const custRepository = CustumerService

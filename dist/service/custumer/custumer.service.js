@@ -37,7 +37,7 @@ class CustumerService {
     }
     static buying(name, price, item_quanti, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let put_quanti = yield (0, buy_operation_1.buyOperation)(id, item_quanti);
+            const put_quanti = yield buy_operation_1.Buy._buyOperation(id, item_quanti);
             const response = yield this.repository.updateById(name, price, put_quanti, id);
             return response;
         });

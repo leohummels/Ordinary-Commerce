@@ -1,9 +1,9 @@
-import {validateLogin} from './email/validateLogin.operation';
-import key from '../auth';
+import {validateLogin} from './validate/validateLogin.operation';
+import key from './auth';
 
 export class LoginService {
     
-    static async userLogin(email:string, password:string) {
+     private static async userLogin(email:string, password:string) {
         const emailValid = await validateLogin.getLogin(email);
         const passwordValid = await validateLogin.getPassword(password);
         
@@ -23,7 +23,12 @@ export class LoginService {
 
     }
 
-    static async userType(info:string) {
+    public static async _userLogin(email:string, password:string) {
+        const result = await this.userLogin(email, password);
+        return result;
+    }
+
+     private static async userType(info:string) {
 
             const usertype = await validateLogin.whatUser(info);
             if(usertype == true) {
@@ -34,6 +39,11 @@ export class LoginService {
                 return "BoasCompras"
             }
             
+    }
+
+    public static async _userType(info:string) {
+        const result = await this.userType(info);
+        return result;
     }
 
 }

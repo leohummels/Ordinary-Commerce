@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
-import { Repository } from '../repository';
-import { Service } from '../service/service'
+import { Repository } from '../../repository';
+import { Service } from '../../service/service'
 
 
 const repo = new Repository

@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginService = void 0;
-const validateLogin_operation_1 = require("./email/validateLogin.operation");
-const auth_1 = __importDefault(require("../auth"));
+const validateLogin_operation_1 = require("./validate/validateLogin.operation");
+const auth_1 = __importDefault(require("./auth"));
 class LoginService {
     static userLogin(email, password) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -30,6 +30,12 @@ class LoginService {
             }
         });
     }
+    static _userLogin(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.userLogin(email, password);
+            return result;
+        });
+    }
     static userType(info) {
         return __awaiter(this, void 0, void 0, function* () {
             const usertype = yield validateLogin_operation_1.validateLogin.whatUser(info);
@@ -39,6 +45,12 @@ class LoginService {
             else {
                 return "BoasCompras";
             }
+        });
+    }
+    static _userType(info) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.userType(info);
+            return result;
         });
     }
 }

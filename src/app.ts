@@ -1,7 +1,7 @@
 import express from 'express';
 import routes from './routes/router';
-import custumer_routes from './routes/custumer.routes'
-import login_routes from './routes/login.routes'
+import custumer_routes from './routes/costumer/custumer.routes'
+import login_routes from './routes/login/login.routes'
 
 export const app = express()
 const router:any = routes

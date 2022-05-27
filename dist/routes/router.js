@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const product_controllers_1 = require("../controller/product.controllers");
+const product_controllers_1 = require("../controller/product/product.controllers");
 const controller = new product_controllers_1.Controller;
 const router = (0, express_1.Router)();
 //Product Routes

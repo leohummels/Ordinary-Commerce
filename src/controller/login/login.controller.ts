@@ -1,12 +1,12 @@
 import {Request, Response} from 'express'
-import { LoginService } from '../service/login/login.service'
+import { LoginService } from '../../service/login/login.service'
 
 export class UserLogin {
 
     static async login(req:Request<{email: string, password: string}>, res:Response){
         const loginParams = req.body
         try {
-                const validate = await LoginService.userLogin(loginParams.email, loginParams.password)
+                const validate = await LoginService._userLogin(loginParams.email, loginParams.password)
                 const str = "http://localhost:3000/home/" + encodeURIComponent(validate)
                 
 
@@ -28,9 +28,9 @@ export class UserLogin {
      static async home(req:Request, res:Response)
      {
         const parametro = await req.params.validate
-        const str = await LoginService.userType(parametro);
+        const str = await LoginService._userType(parametro);
         const endereco = "http://localhost:3000/home/" + encodeURIComponent(parametro) + "/" + encodeURIComponent(str)
-        console.log(parametro)
+        
         res.status(200).redirect(endereco);
      }
 
